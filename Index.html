@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 20px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="step1" class="container active">
+        <h1>Congrats Dr. Senol. It was a really nice presentation. Now, time for the gift. What do you think it is?</h1>
+        <form id="giftForm">
+            <input type="text" name="gift" placeholder="Enter your answer here" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message1" class="message" style="display:none;">Nope. nope and nope</div>
+        <div id="dateError1" class="message" style="display:none;">You can only proceed to the next step on July 9, 2024.</div>
+    </div>
+
+    <div id="step2" class="container">
+        <h1>Your first hint: It is an outdoor activity</h1>
+        <form id="hintForm1">
+            <input type="text" name="guess" placeholder="Enter your guess here" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message2" class="message" style="display:none;">Still incorrect. Think harder.</div>
+        <div id="dateError2" class="message" style="display:none;">You can only proceed to the next step on July 10, 2024.</div>
+    </div>
+
+    <div id="step3" class="container">
+        <h1>Your second hint: You like this activity</h1>
+        <form id="hintForm2">
+            <input type="text" name="guess" placeholder="Enter your guess here" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message3" class="message" style="display:none;">Think Harder Dr. Senol</div>
+        <div id="dateError3" class="message" style="display:none;">You can only proceed to the next step on July 11, 2024.</div>
+    </div>
+
+    <div id="step4" class="container">
+        <h1>Your third hint: It involves an animal</h1>
+        <form id="hintForm3">
+            <input type="text" name="guess" placeholder="Enter your guess here" required>
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="message4" class="message" style="display:none;">I think it is easier just to tell you. Wait for an email in your mailbox.</div>
+    </div>
+
+    <script>
+        document.getElementById('giftForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message1').style.display = 'block';
+            const currentDate = new Date();
+            const step2Date = new Date('2024-07-09');
+
+            setTimeout(function() {
+                if (currentDate.toDateString() === step2Date.toDateString()) {
+                    document.getElementById('step1').classList.remove('active');
+                    document.getElementById('step2').classList.add('active');
+                } else {
+                    document.getElementById('dateError1').style.display = 'block';
+                }
+            }, 2000);
+        });
+
+        document.getElementById('hintForm1').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message2').style.display = 'block';
+            const currentDate = new Date();
+            const step3Date = new Date('2024-07-10');
+
+            setTimeout(function() {
+                if (currentDate.toDateString() === step3Date.toDateString()) {
+                    document.getElementById('step2').classList.remove('active');
+                    document.getElementById('step3').classList.add('active');
+                } else {
+                    document.getElementById('dateError2').style.display = 'block';
+                }
+            }, 2000);
+        });
+
+        document.getElementById('hintForm2').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message3').style.display = 'block';
+            const currentDate = new Date();
+            const step4Date = new Date('2024-07-11');
+
+            setTimeout(function() {
+                if (currentDate.toDateString() === step4Date.toDateString()) {
+                    document.getElementById('step3').classList.remove('active');
+                    document.getElementById('step4').classList.add('active');
+                } else {
+                    document.getElementById('dateError3').style.display = 'block';
+                }
+            }, 2000);
+        });
+
+        document.getElementById('hintForm3').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('message4').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
